@@ -9,19 +9,17 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
     <properties>
-      <!-- Database Connection Settings -->
-      <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/mydb"/>
-      <property name="jakarta.persistence.jdbc.user" value="username"/>
-      <property name="jakarta.persistence.jdbc.password" value="password"/>
-      <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/postgres"/>
+      <property name="javax.persistence.jdbc.user" value="GulayAlakbarova"/>
+      <property name="javax.persistence.jdbc.password" value="password"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 
 
-      <!-- Hibernate Settings -->
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.show_sql" value="true"/>
-
-
     </properties>
+
   </persistence-unit>
 </persistence>
