@@ -25,7 +25,7 @@ public class Library {
     @Column(name = "contact_number")
     private String contact;
 
-    // New column
+
     private int yearFounded;
 
     @OneToMany(mappedBy = "library")
