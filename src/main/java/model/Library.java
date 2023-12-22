@@ -16,14 +16,23 @@ public class Library {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 100)
     private String name;
+
+    @Column(nullable = true)
     private String address;
+
+    @Column(name = "contact_number")
     private String contact;
+
+    // New column
+    private int yearFounded;
 
     @OneToMany(mappedBy = "library")
     private List<Book> books = new ArrayList<>();
 
     public void setBooks(List<Book> books) {
+
         this.books = books;
     }
 
@@ -32,6 +41,5 @@ public class Library {
                 .forEach(i -> {
                     books.add(book);
                 });
-
     }
 }

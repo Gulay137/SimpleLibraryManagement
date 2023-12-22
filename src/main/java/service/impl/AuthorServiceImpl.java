@@ -14,6 +14,7 @@ public class AuthorServiceImpl implements AuthorService {
     private final EntityManager entityManager;
 
     public AuthorServiceImpl(EntityManager entityManager) {
+
         this.entityManager = entityManager;
     }
 
@@ -36,6 +37,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author getAuthorById(Long id) {
+
         return entityManager.find(Author.class, id);
     }
 

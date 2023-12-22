@@ -37,6 +37,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public Library getLibraryById(Long id) {
+
         return entityManager.find(Library.class, id);
     }
 
