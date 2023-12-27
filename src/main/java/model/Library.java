@@ -42,4 +42,11 @@ public class Library {
                     books.add(book);
                 });
     }
+
+
+    public int countCopiesOfBook(Book book) {
+        return (int) books.stream()
+                .filter(b -> b.equals(book))
+                .count();
+    }
 }
