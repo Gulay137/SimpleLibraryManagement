@@ -14,7 +14,6 @@ public class LibraryServiceImpl implements LibraryService {
     private final EntityManager entityManager;
 
     public LibraryServiceImpl(EntityManager entityManager) {
-
         this.entityManager = entityManager;
     }
 
@@ -22,7 +21,6 @@ public class LibraryServiceImpl implements LibraryService {
     public Library createLibrary(Library library) {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-
         try {
             entityManager.persist(library);
             transaction.commit();
@@ -37,7 +35,6 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public Library getLibraryById(Long id) {
-
         return entityManager.find(Library.class, id);
     }
 
@@ -51,21 +48,17 @@ public class LibraryServiceImpl implements LibraryService {
     public Library updateLibrary(Long id, Library updatedLibrary) {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-
         try {
             Library existingLibrary = entityManager.find(Library.class, id);
             if (existingLibrary != null) {
                 existingLibrary.setName(updatedLibrary.getName());
                 existingLibrary.setAddress(updatedLibrary.getAddress());
                 existingLibrary.setContact(updatedLibrary.getContact());
-
                 transaction.commit();
                 return existingLibrary;
-            } else {
-
-                transaction.rollback();
-                return null;
             }
+            transaction.rollback();
+            return null;
         } catch (Exception e) {
             if (transaction.isActive()) {
                 transaction.rollback();
@@ -78,7 +71,6 @@ public class LibraryServiceImpl implements LibraryService {
     public void deleteLibrary(Long id) {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-
         try {
             Library library = entityManager.find(Library.class, id);
             if (library != null) {
@@ -99,16 +91,13 @@ public class LibraryServiceImpl implements LibraryService {
     public void addBookToLibrary(Long libraryId, Long bookId, int numberOfCopies) {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-
         try {
             Library library = entityManager.find(Library.class, libraryId);
             Book book = entityManager.find(Book.class, bookId);
-
             if (library != null && book != null) {
                 library.addBook(book, numberOfCopies);
                 transaction.commit();
             } else {
-
                 transaction.rollback();
             }
         } catch (Exception e) {
@@ -119,4 +108,3 @@ public class LibraryServiceImpl implements LibraryService {
         }
     }
 }
-
