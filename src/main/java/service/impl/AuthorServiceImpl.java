@@ -54,16 +54,11 @@ public class AuthorServiceImpl implements AuthorService {
 
         try {
             Author existingAuthor = entityManager.find(Author.class, id);
-            if (existingAuthor != null) {
-                existingAuthor.setName(updatedAuthor.getName());
-                existingAuthor.setSurname(updatedAuthor.getSurname());
+            existingAuthor.setName(updatedAuthor.getName());
+            existingAuthor.setSurname(updatedAuthor.getSurname());
 
-                transaction.commit();
-                return existingAuthor;
-            } else {
-                transaction.rollback();
-                return null;
-            }
+            transaction.commit();
+            return existingAuthor;
         } catch (Exception e) {
             if (transaction.isActive()) {
                 transaction.rollback();
@@ -79,12 +74,8 @@ public class AuthorServiceImpl implements AuthorService {
 
         try {
             Author author = entityManager.find(Author.class, id);
-            if (author != null) {
-                entityManager.remove(author);
-                transaction.commit();
-            } else {
-                transaction.rollback();
-            }
+            entityManager.remove(author);
+            transaction.commit();
         } catch (Exception e) {
             if (transaction.isActive()) {
                 transaction.rollback();
